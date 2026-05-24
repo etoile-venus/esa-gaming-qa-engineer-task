@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Test reports and output
+cypress/videos/
+cypress/screenshots/
+postman-api/reports/*
+!postman-api/reports/.gitkeep
+
+# Environment files
+.env
+.env.*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Task source PDF
+ESA_QA-Engineer_Task 2026.pdf
+
+# Temporary extracted image data
+manual-testing/image-differences/assets/*.raw
+manual-testing/image-differences/assets/pdf-image-*.png
