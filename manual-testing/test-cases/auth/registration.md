@@ -4,6 +4,19 @@
 
 This file contains manual test cases for account registration behavior.
 
+## Traceability Matrix
+
+| Requirement | Covered By | Notes |
+| --- | --- | --- |
+| AC1 - Registration page is accessible | `REG_TC01` | Checks navigation to the registration page and visibility of the registration form. |
+| AC2 - Required registration fields are displayed and validated | `REG_TC02`, `REG_TC03`, `REG_TC10` | `REG_TC02` checks field visibility. `REG_TC03` checks empty required field validation. `REG_TC10` checks the 5-digit "Postal code" requirement. |
+| AC3 - Email address must match a valid format | `REG_TC04`, `REG_TC08` | `REG_TC04` checks invalid email values. `REG_TC08` includes successful registration with a valid unique email. |
+| AC4 - Password must be 6-40 characters long | `REG_TC05` | Checks invalid password length boundary values. |
+| AC5 - Duplicate email shows the expected error message | `REG_TC09` | Checks that registration is blocked when the email is already registered. |
+| AC6 - Successful registration with valid data | `REG_TC08` | Checks account creation with valid required data. |
+| Additional visible password rules | `REG_TC06` | Checks visible password character-type requirements. |
+| Additional password UI behavior | `REG_TC07` | Checks the password visibility toggle. |
+
 ## REG_TC01 - Verify that the registration page opens when the user clicks "Register your account"
 
 ### Description

@@ -4,6 +4,16 @@
 
 This file contains manual test cases for user login with email and password.
 
+## Traceability Matrix
+
+| Requirement | Covered By | Notes |
+| --- | --- | --- |
+| AC1 - Login form is displayed | `LOGIN_TC01` | Checks navigation to the login page and visibility of the email field, password field, and "Login" button. |
+| AC2 - Email field is required and must use a valid email format | `LOGIN_TC02`, `LOGIN_TC03` | `LOGIN_TC02` checks required email validation. `LOGIN_TC03` checks invalid email format validation. |
+| AC3 - Password field is required | `LOGIN_TC04` | Checks required password validation. |
+| AC4 - Successful login with valid credentials | `LOGIN_TC05` | Checks authentication and redirect to the account dashboard. |
+| AC5 - Invalid credentials show an error message | `LOGIN_TC06` | Checks the "Invalid email or password" message. |
+
 ## LOGIN_TC01 - Verify that the login form is displayed when the user opens the login page
 
 ### Description
