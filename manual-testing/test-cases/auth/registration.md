@@ -128,7 +128,7 @@ The user is on the customer registration page, and all required fields except "E
 | ---------- | ------------------ | ------ | ------------------ | ----------------------------------------------- |
 | 2026-05-24 | Chrome, Windows 11 | Failed | Danica Biljeljanin | Auth, Registration, Email, Validation, Negative |
 
-**Notes:** The selected test data covers missing `@`, missing local part, missing domain separator, multiple `@` symbols, invalid dot placement, missing top-level domain, double dots in the domain, and display-name style input. The invalid email examples are based on the public source list [cjaoude/fd9910626629b53c4d25](https://gist.github.com/cjaoude/fd9910626629b53c4d25). Observed validation message for rejected values: "Email format is invalid".
+**Notes:** The selected test data covers missing `@`, missing local part, missing domain separator, multiple `@` symbols, invalid dot placement, missing top-level domain, double dots in the domain, and display-name style input. The invalid email examples are based on the public source list [cjaoude/fd9910626629b53c4d25](https://gist.github.com/cjaoude/fd9910626629b53c4d25). Observed validation message for rejected values: "Email format is invalid". The accepted invalid email values are tracked in `REG_BUG01`.
 
 ## REG_TC05 - Verify that the user cannot register when the password length is outside the allowed range
 

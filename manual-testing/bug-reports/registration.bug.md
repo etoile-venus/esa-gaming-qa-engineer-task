@@ -2,9 +2,9 @@
 
 ## REG_BUG01 - Registration accepts invalid email address formats [Open]
 
-| Severity | Priority | Related Test Case |
-| --- | --- | --- |
-| Medium | Medium | `REG_TC04` - Verify that the user cannot register when the email address format is invalid. |
+| Severity | Priority | Related Test Case                                                                           |
+| -------- | -------- | ------------------------------------------------------------------------------------------- |
+| Medium   | Medium   | `REG_TC04` - Verify that the user cannot register when the email address format is invalid. |
 
 ### Description
 
@@ -19,11 +19,11 @@ Test data accepted during testing:
 
 ### Steps to Reproduce
 
-| Step | Action | Test Data |
-| --- | --- | --- |
-| 1 | Enter valid data in all required registration fields except "Email address". | Valid registration data |
-| 2 | Enter one of the invalid email values. | `.email@example.com`, `email..email@example.com`, `email@example`, `email@example..com` |
-| 3 | Click the "Register" button. | N/A |
+| Step | Action                                                                       | Test Data                                                                               |
+| ---- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 1    | Enter valid data in all required registration fields except "Email address". | Valid registration data                                                                 |
+| 2    | Enter one of the invalid email values.                                       | `.email@example.com`, `email..email@example.com`, `email@example`, `email@example..com` |
+| 3    | Click the "Register" button.                                                 | N/A                                                                                     |
 
 ### Expected Result
 
@@ -35,9 +35,9 @@ Registration is completed for the invalid email values listed in the description
 
 ### Test Environment
 
-| Date | OS | Browser | Device | App Version | Tested By |
-| --- | --- | --- | --- | --- | --- |
-| 2026-05-24 | Windows 11 | Chrome | Desktop | N/A | Danica Biljeljanin |
+| Date       | OS         | Browser | Device  | App Version | Tested By          |
+| ---------- | ---------- | ------- | ------- | ----------- | ------------------ |
+| 2026-05-24 | Windows 11 | Chrome  | Desktop | N/A         | Danica Biljeljanin |
 
 ### Attachments
 
@@ -49,9 +49,9 @@ The invalid email examples are based on the public source list [cjaoude/fd991062
 
 ## REG_BUG02 - Registration accepts a password longer than 40 characters [Open]
 
-| Severity | Priority | Related Test Case |
-| --- | --- | --- |
-| Medium | Medium | `REG_TC05` - Verify that the user cannot register when the password length is outside the allowed range. |
+| Severity | Priority | Related Test Case                                                                                        |
+| -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| Medium   | Medium   | `REG_TC05` - Verify that the user cannot register when the password length is outside the allowed range. |
 
 ### Description
 
@@ -61,11 +61,11 @@ The acceptance criteria define the allowed password length as 6-40 characters. D
 
 ### Steps to Reproduce
 
-| Step | Action | Test Data |
-| --- | --- | --- |
-| 1 | Enter valid data in all required registration fields except "Password". | Valid registration data |
-| 2 | Enter a password longer than 40 characters. | `A1!bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM` |
-| 3 | Click the "Register" button. | N/A |
+| Step | Action                                                                  | Test Data                                   |
+| ---- | ----------------------------------------------------------------------- | ------------------------------------------- |
+| 1    | Enter valid data in all required registration fields except "Password". | Valid registration data                     |
+| 2    | Enter a password longer than 40 characters.                             | `A1!bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM` |
+| 3    | Click the "Register" button.                                            | N/A                                         |
 
 ### Expected Result
 
@@ -77,9 +77,9 @@ Registration is completed with the 41-character password.
 
 ### Test Environment
 
-| Date | OS | Browser | Device | App Version | Tested By |
-| --- | --- | --- | --- | --- | --- |
-| 2026-05-24 | Windows 11 | Chrome | Desktop | N/A | Danica Biljeljanin |
+| Date       | OS         | Browser | Device  | App Version | Tested By          |
+| ---------- | ---------- | ------- | ------- | ----------- | ------------------ |
+| 2026-05-24 | Windows 11 | Chrome  | Desktop | N/A         | Danica Biljeljanin |
 
 ### Attachments
 
@@ -89,15 +89,17 @@ To be added: screenshot or short video showing registration completed with the 4
 
 The 5-character password boundary was rejected with the message "Password must be minimal 6 characters long.", but the 41-character password boundary was accepted.
 
-## REG_BUG03 - Password strength indicator behaves in a flaky way [Needs Review]
+## REG_BUG03 - Password strength indicator shows inconsistent strength after repeated password changes [Open]
 
 | Severity | Priority | Related Test Case |
-| --- | --- | --- |
-| Low | Low | N/A |
+| -------- | -------- | ----------------- |
+| Low      | Low      | N/A               |
 
 ### Description
 
-The password strength indicator on the registration form appears to behave in a flaky way. This issue needs focused retesting before final reproduction steps are added.
+The password strength indicator on the registration form does not always match the current "Password" field value after the user repeatedly enters, clears, and re-enters password values.
+
+During testing, the indicator sometimes showed a strong password state when the "Password" field was empty. In other cases, it showed weak strength for a password that matched the visible password rules.
 
 ### Preconditions
 
@@ -105,35 +107,41 @@ The user is on the customer registration page.
 
 ### Steps to Reproduce
 
-To be confirmed during focused retesting.
+| Step | Action                                                                                                   | Test Data             |
+| ---- | -------------------------------------------------------------------------------------------------------- | --------------------- |
+| 1    | Enter a valid password in the "Password" field.                                                          | `Qa27!flow`           |
+| 2    | Clear the "Password" field.                                                                              | N/A                   |
+| 3    | Enter another valid password in the "Password" field.                                                    | `A1!bcdef`            |
+| 4    | Repeat clearing and re-entering password values several times.                                           | Valid password values |
+| 5    | Check the password strength indicator after the field is cleared and after each new password is entered. | N/A                   |
 
 ### Expected Result
 
-The password strength indicator should show a state that matches the current "Password" field value.
+The password strength indicator resets when the "Password" field is empty and recalculates the strength based only on the current field value.
 
 ### Actual Result
 
-The password strength indicator behavior appears flaky and does not always match the current "Password" field value.
+The password strength indicator does not always match the current "Password" field value. It can show a strong password state when the field is empty, or show weak strength for a password that matches the visible password rules.
 
 ### Test Environment
 
-| Date | OS | Browser | Device | App Version | Tested By |
-| --- | --- | --- | --- | --- | --- |
-| 2026-05-24 | Windows 11 | Chrome | Desktop | N/A | Danica Biljeljanin |
+| Date       | OS         | Browser | Device  | App Version | Tested By          |
+| ---------- | ---------- | ------- | ------- | ----------- | ------------------ |
+| 2026-05-27 | Windows 11 | Chrome  | Desktop | N/A         | Danica Biljeljanin |
 
 ### Attachments
 
-To be added after retesting: short video is recommended because the issue appears flaky.
+To be added: short video showing the password field being cleared and re-entered while the strength indicator shows an incorrect state.
 
 ### Notes
 
-Proper reproduction steps and final wording should be added after the issue is retested.
+This issue is easier to show with video because the incorrect indicator state appears after repeated field changes.
 
 ## REG_BUG04 - Duplicate email validation shows a different error message than expected [Open]
 
-| Severity | Priority | Related Test Case |
-| --- | --- | --- |
-| Low | Low | `REG_TC09` - Verify that the user cannot register with an email address that is already in use. |
+| Severity | Priority | Related Test Case                                                                               |
+| -------- | -------- | ----------------------------------------------------------------------------------------------- |
+| Low      | Low      | `REG_TC09` - Verify that the user cannot register with an email address that is already in use. |
 
 ### Description
 
@@ -141,11 +149,11 @@ The registration form prevents registration with an already registered email add
 
 ### Steps to Reproduce
 
-| Step | Action | Test Data |
-| --- | --- | --- |
-| 1 | Enter valid data in all required registration fields. | Valid registration data |
-| 2 | Enter an already registered email address in the "Email address" field. | Existing registered email |
-| 3 | Click the "Register" button. | N/A |
+| Step | Action                                                                  | Test Data                 |
+| ---- | ----------------------------------------------------------------------- | ------------------------- |
+| 1    | Enter valid data in all required registration fields.                   | Valid registration data   |
+| 2    | Enter an already registered email address in the "Email address" field. | Existing registered email |
+| 3    | Click the "Register" button.                                            | N/A                       |
 
 ### Expected Result
 
@@ -157,9 +165,9 @@ Registration is not completed, but the message "A customer with this email addre
 
 ### Test Environment
 
-| Date | OS | Browser | Device | App Version | Tested By |
-| --- | --- | --- | --- | --- | --- |
-| 2026-05-24 | Windows 11 | Chrome | Desktop | N/A | Danica Biljeljanin |
+| Date       | OS         | Browser | Device  | App Version | Tested By          |
+| ---------- | ---------- | ------- | ------- | ----------- | ------------------ |
+| 2026-05-24 | Windows 11 | Chrome  | Desktop | N/A         | Danica Biljeljanin |
 
 ### Attachments
 
@@ -171,9 +179,9 @@ The validation behavior works, but the displayed message does not match the acce
 
 ## REG_BUG05 - Registration accepts postal code values that do not contain exactly 5 digits [Open]
 
-| Severity | Priority | Related Test Case |
-| --- | --- | --- |
-| Medium | Medium | `REG_TC10` - Verify that the user cannot register when "Postal code" does not contain exactly 5 digits. |
+| Severity | Priority | Related Test Case                                                                                       |
+| -------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| Medium   | Medium   | `REG_TC10` - Verify that the user cannot register when "Postal code" does not contain exactly 5 digits. |
 
 ### Description
 
@@ -186,13 +194,13 @@ Test data accepted during testing:
 
 ### Steps to Reproduce
 
-| Step | Action | Test Data |
-| --- | --- | --- |
-| 1 | Enter valid data in all required registration fields except "Postal code". | Valid registration data |
-| 2 | Enter a "Postal code" value with fewer than 5 digits. | `1234` |
-| 3 | Click the "Register" button. | N/A |
-| 4 | Repeat the test with a "Postal code" value with more than 5 digits. | `123456` |
-| 5 | Click the "Register" button. | N/A |
+| Step | Action                                                                     | Test Data               |
+| ---- | -------------------------------------------------------------------------- | ----------------------- |
+| 1    | Enter valid data in all required registration fields except "Postal code". | Valid registration data |
+| 2    | Enter a "Postal code" value with fewer than 5 digits.                      | `1234`                  |
+| 3    | Click the "Register" button.                                               | N/A                     |
+| 4    | Repeat the test with a "Postal code" value with more than 5 digits.        | `123456`                |
+| 5    | Click the "Register" button.                                               | N/A                     |
 
 ### Expected Result
 
@@ -204,9 +212,9 @@ Registration is accepted with both invalid "Postal code" values listed in the de
 
 ### Test Environment
 
-| Date | OS | Browser | Device | App Version | Tested By |
-| --- | --- | --- | --- | --- | --- |
-| 2026-05-24 | Windows 11 | Chrome | Desktop | N/A | Danica Biljeljanin |
+| Date       | OS         | Browser | Device  | App Version | Tested By          |
+| ---------- | ---------- | ------- | ------- | ----------- | ------------------ |
+| 2026-05-24 | Windows 11 | Chrome  | Desktop | N/A         | Danica Biljeljanin |
 
 ### Attachments
 

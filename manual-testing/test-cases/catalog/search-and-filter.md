@@ -87,7 +87,7 @@ The user is on the Home page.
 | --- | --- | --- | --- | --- |
 | 2026-05-25 | Chrome, Windows 11 | Failed | Danica Biljeljanin | Catalog, Search, Validation, Negative |
 
-**Notes:** Covers AC6. The search blocking behavior worked, but the missing validation message does not match the expected result.
+**Notes:** Covers AC6. The search blocking behavior worked, but the missing validation message does not match the expected result. Related bug report: `SEARCH_FILTER_BUG01`.
 
 ## SEARCH_FILTER_TC03 - Verify that the search input accepts a maximum of 40 characters
 
@@ -174,7 +174,7 @@ The user is on the Home page.
 | --- | --- | --- | --- | --- |
 | 2026-05-25 | Chrome, Windows 11 | Failed | Danica Biljeljanin | Catalog, Search, Filter, Reset |
 
-**Notes:** Covers AC9. The result list reset behavior worked, but the sort dropdown did not return to its default state.
+**Notes:** Covers AC9. The result list reset behavior worked, but the sort dropdown did not return to its default state. Related bug report: `SEARCH_FILTER_BUG02`.
 
 ## SEARCH_FILTER_TC06 - Verify that child categories are selected when a parent category is selected
 
